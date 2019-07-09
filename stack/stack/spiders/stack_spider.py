@@ -6,14 +6,14 @@ from ..items import StackItem
 class StackSpider(Spider):
     name = "stack"
     allowed_domains = ["stackoverflow.com"]
-    start_urls = ["http://stackoverflow.com/questions?pagesize=50&sort=newest"]
+    start_urls = ["http://stackoverflow.com//questions?pagesize=50&sort=newest"]
 
     def parse(self, response):
         questions = Selector(response).xpath('//div[@class="summary"]/h3')
-
-        for q in questions:
-            item = StackItem()
-            item.title = q.xpath()
-            item.url = q.xpath()
-
-            yield item
+        print(questions)
+        # for q in questions:
+        #     item = StackItem()
+        #     item.title = q.xpath('a[@class="question-hyperlink"]/text()').extract()[0]
+        #     item.url = q.xpath('a[@class="question-hyperlink"]/@href').extract()[0]
+        #
+        #     yield item
